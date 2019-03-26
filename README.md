@@ -53,7 +53,7 @@ plotgeometry
 ```
 Documentation for each function can be seen by typing the function name on a terminal with no parameters.
 
-`sunimage` requires `nimage` added to Seismic Unix. For information on installing nimage, check this.
+`sunimage` requires `nimage` added to Seismic Unix. For information on installing nimage, check [this](https://github.com/vkrGitHub/Installation-Tutorials/tree/master/SU)
 
 
 
