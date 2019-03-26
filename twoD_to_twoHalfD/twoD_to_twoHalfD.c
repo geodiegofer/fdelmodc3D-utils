@@ -1,10 +1,10 @@
 /*
 HOW TO COMPILE (need SU installed):
-gcc -c sutemplate.c -I$(CWPROOT)/include
-gcc sutemplate.o -o sutemplate.exe -L$(CWPROOT)/lib -lsu -lpar -lcwp
+gcc -c twoD_to_twoHalfD.c -I$(CWPROOT)/include
+gcc twoD_to_twoHalfD.o -o twoD_to_twoHalfD.exe -L$(CWPROOT)/lib -lsu -lpar -lcwp
 
 Testing:
-./sutemplate.exe nz=125 nx=383 dz=24 dx=24 
+./twoD_to_twoHalfD.exe nz=125 nx=383 dz=24 dx=24 
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@ Testing:
 
 // SU header read/write*/
 #include "segy.h"
-#define TRCBYTES                240		//SU-header size
+#define TRCBYTES                240		//SU-header size, fdelmodc's format
 
 
 /*********************** self documentation **********************/
@@ -41,9 +41,9 @@ char *sdoc[] = {
 " Replicates the provided 2D model ny-times, providing a 3d (2.5d) model ",
 " of total size nz*nx*ny. ",
 " ",
-"      Victor Koehne 2018",
-"      SENAI-CIMATEC",
-"      E-mail: ramalhokoehne@gmail.com ",
+"      Author 2018",
+"      Institution",
+"      E-mail: email@domain.com ",
 "  ",
 NULL};
 /**************** end self doc ***********************************/
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
 
 // PROCESS DATA ///////////////////////////////////////////////////////////////
 	twoD_to_twoHalfD(nz, nx, ny, inName, outName);
-	printf("\n2.5d model saved at %s.\nnz=%d\nnx=%d\nny=%d\n\n", outName, nz, nx, ny);	
+	printf("\n2.5d model saved at %s \nnz=%d\nnx=%d\nny=%d\n\n", outName, nz, nx, ny);	
 
 // FREE VARIABLES /////////////////////////////////////////////////////////////
 
