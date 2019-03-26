@@ -39,6 +39,7 @@ source bash_tmpUTILS.sh
 ```
 which has to be run everytime. To load automatically on startup, you may add a line to your `~/.bashrc`:
 ```sh
+TMPUTILSPATH="path/to/tmpUTILS"
 source $TMPUTILSPATH/bash_tmpUTILS.sh
 ```
 
