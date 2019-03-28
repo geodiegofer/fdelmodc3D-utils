@@ -25,7 +25,7 @@ char *sdoc[] = {
 "  ",
 " bin2su - puts a SU header on binmodel, save it on sumodel", 
 "  ",
-" ./bin2su binmodel= sumodel= nz= nx= ny= dz= dx= dy= ",
+" ./bin2su binmodel= sumodel= nz= nx= ny= dz= dx= dy=  [optional parameters]",
 "  ",
 " Required parameters:",
 " ",
@@ -38,6 +38,10 @@ char *sdoc[] = {
 "   dx= ................ spacing (m) of 2nd dimension (x)",
 "   dy= ................ spacing (m) of 3rd dimension (y)",
 "  ",
+" Optional parameters:",
+" ",
+"   opend=0 ................ OpendTect flag, =1 fill extra header values, = 0 (default) fills only the minimum for fdelmodc",
+"  ",
 " If no ny is provided, a it assumes a 2D model input.",
 " Filled header parameters (for a complete list, please check segy.h):",
 " hdr.ns	-> nz",
@@ -46,11 +50,19 @@ char *sdoc[] = {
 " hdr.d2	-> dx",
 " hdr.gx	-> (int) ix*dx*1000 . x distance from origin in meters*1000",
 " hdr.gy	-> (int) iy*dy*1000 . y distance from origin in meters*1000",
+" hdr.scalco	-> -1000. Factor to correct gx, gy", 
 " hdr.trid	-> TRID_DEPTH (=130). Standard to read vertical data",
 " hdr.ntr	-> nx*ny",
 " ",
+" OpendTect extra header variables:",
+" hdr.dt	-> d1*E6",
+" hdr.tracl	-> 0 to nx-1",
+" hdr.tracr	-> 0 to nx*ny-1",
+" hdr.counit	-> =1 (meters)", 
+" ",
+" ",
 " Due to compatibility reasons gx and gy are integers. They are multiplied by 1000 to preserve decimal places.",
-" A program that reads the headers produced by 'bin2su' must perform the corresponding conversion to meters. ",
+" hdr.scalco = 1000 can be used to convert gx and gy back to meters.",
 " ",
 "      Author 2018",
 "      Institution",
@@ -61,7 +73,7 @@ NULL};
 
 
 
-void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, char *outName){
+void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, char *outName, int odtkey){
 /*
 	First version, improve later.
 	Substitute for(ix..) with while loop
@@ -80,6 +92,7 @@ void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, 
 	hdr.d2 = dx;
 	hdr.ntr = nx*ny;
 	hdr.trid = TRID_DEPTH; //standard to read vertical data
+	hdr.scalco = -1000;
 	
 	fpin = fopen(inName, "r");
 	fpout = fopen(outName, "w");
@@ -88,7 +101,17 @@ void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, 
 		for(ix=0; ix<nx; ix++){
 			// Set header for current "trace"
 			hdr.gx = (int) ix*dx*1000;
-			hdr.gy = (int) iy*dy*1000; 			 			
+			hdr.gy = (int) iy*dy*1000;
+	
+			if(odtkey){
+				//hdr.dt = dz*1000000;
+				hdr.dt = 4000;
+				hdr.tracl = ix+1;
+				hdr.tracr = iy*nx+ix+1;
+				
+				hdr.trid=1;
+				hdr.counit=1;	
+			} 			 			
 			//printf("(ix, iy)=(%d, %d) hdr.gx=%d hdr.gy=%d\n", ix, iy, hdr.gx, hdr.gy);
 
 			// Read one raw trace from input file
@@ -125,17 +148,19 @@ int main(int argc, char *argv[]){
 	int nz, nx, ny; 
 	float dz, dx, dy;
 	char *inName, *outName;
-	int key3D=1;
+	int key3D=1, odtkey;
 
 // GET INPUT PARAMETERS ///////////////////////////////////////////////////////
 	if( !getparint("nz", &nz) ) err("No nz. Exiting.\n");
 	if( !getparint("nx", &nx) ) err("No nx. Exiting.\n");
 	if( !getparint("ny", &ny) ) { ny = 1; key3D=0; };
+	if( !getparint("opendt", &odtkey) ) odtkey = 0;
 	if( !getparfloat("dz", &dz) ) err("No dz. Exiting.\n");
 	if( !getparfloat("dx", &dx) ) err("No dx. Exiting.\n");
 	if( !getparfloat("dy", &dy) ) dy = 0.0;
 	if( !getparstring("binmodel", &inName) ) err("No binmodel file name provided. Exiting.");
 	if( !getparstring("sumodel", &outName) ) err("No sumodel file name provided. Exiting.");
+	
 
 	//printf("CHECK: nz=%d \n nx=%d \n ny=%d dz=%f \n dx=%f \n dy=%f \n binmodel=%s \n sumodel=%s \n", nz, nx, ny, dz, dx, dy, inName, outName);	
 
@@ -150,7 +175,7 @@ int main(int argc, char *argv[]){
 	}
 
 // PROCESS DATA ///////////////////////////////////////////////////////////////
-	bin2su(nz, nx, ny, dz, dx, dy, inName, outName);
+	bin2su(nz, nx, ny, dz, dx, dy, inName, outName, odtkey);
 
 // FREE VARIABLES /////////////////////////////////////////////////////////////
 	
