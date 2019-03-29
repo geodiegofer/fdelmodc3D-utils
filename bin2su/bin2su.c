@@ -50,19 +50,20 @@ char *sdoc[] = {
 " hdr.d2	-> dx",
 " hdr.gx	-> (int) ix*dx*1000 . x distance from origin in meters*1000",
 " hdr.gy	-> (int) iy*dy*1000 . y distance from origin in meters*1000",
-" hdr.scalco	-> -1000. Factor to correct gx, gy", 
+" hdr.scalco	-> -1000. Factor to correct gx, gy, sx, sy, dt", 
 " hdr.trid	-> TRID_DEPTH (=130). Standard to read vertical data",
 " hdr.ntr	-> nx*ny",
 " ",
+" Due to compatibility reasons gx and gy are integers. They are multiplied by 1000 to preserve decimal places.",
+" hdr.scalco = 1000 can be used to convert gx and gy back to meters.",
+" ",
+" ",
 " OpendTect extra header variables (needs 1-based indexing):",
+" hdr.dt	-> necessary since OpendTect does not read hdr.d1",
 " hdr.cdp	-> x-index in samples (1 to nx)",
 " hdr.fldr	-> y-index in samples (1 to ny)",
 " hdr.sx	-> x-index in meters (ix+1)*dx",
 " hdr.sy	-> y-index in meters (iy+1)*dy",
-" ",
-" ",
-" Due to compatibility reasons gx and gy are integers. They are multiplied by 1000 to preserve decimal places.",
-" hdr.scalco = 1000 can be used to convert gx and gy back to meters.",
 " ",
 "      Author 2018",
 "      Institution",
@@ -90,32 +91,30 @@ void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, 
 	hdr.ns = nz;
 	hdr.d1 = dz;
 	hdr.d2 = dx;
-	hdr.ntr = nx*ny;
+	//hdr.ntr = nx*ny;
 	hdr.trid = TRID_DEPTH; //standard to read vertical data
 	hdr.scalco = -1000;
 	
 	fpin = fopen(inName, "r");
 	fpout = fopen(outName, "w");
 
+	int fakeX = 0, fakeY = 0; //fake x and y coordinates for opendt better plot
+
 	for(iy=0; iy<ny; iy++){
 		for(ix=0; ix<nx; ix++){
 			// Set header for current "trace"
-			hdr.gx = (int) ix*dx*1000;
-			hdr.gy = (int) iy*dy*1000;
+			hdr.gx = (int) ix*dx*1000+fakeY;
+			hdr.gy = (int) iy*dy*1000+fakeX;
 	
 			if(odtkey){
-				//hdr.dt = dz*1000000;
-				/*hdr.dt = 4000;
-				hdr.tracl = ix+1;
-				hdr.tracr = iy*nx+ix+1;
+				hdr.dt = (int) dz*1000;
 				
-				hdr.trid=1;
-				hdr.counit=1;*/
+				//hdr.counit=1;
 
 				hdr.cdp = ix+1;			
 				hdr.fldr = iy+1;
-				hdr.sx = (int) (ix+1)*dx*1000;
-				hdr.sy = (int) (iy+1)*dy*1000;	
+				hdr.sx = (int) (ix+1)*dx*1000 + fakeX;
+				hdr.sy = (int) (iy+1)*dy*1000 + fakeY;	
 			} 			 			
 			//printf("(ix, iy)=(%d, %d) hdr.gx=%d hdr.gy=%d\n", ix, iy, hdr.gx, hdr.gy);
 
