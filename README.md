@@ -29,20 +29,6 @@ bin2su.exe
 ```
 Documentation for each function can be seen by typing the function name on a terminal with no parameters.
 
-# Useful BASH functions
-
-The file `bash_tmpUTILS.sh` contains useful `bash` functions for visualizing 2D and 3D data.
-
-To make use of these functions,
-```sh
-source bash_tmpUTILS.sh
-```
-which has to be run everytime. To load automatically on startup, you may add a line to your `~/.bashrc`:
-```sh
-TMPUTILSPATH="path/to/tmpUTILS"
-source $TMPUTILSPATH/bash_tmpUTILS.sh
-```
-
 ## Bash functions list
 ```sh
 # Wrapper around nimage to see 3D SU files

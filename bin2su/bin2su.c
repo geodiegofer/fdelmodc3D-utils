@@ -54,11 +54,11 @@ char *sdoc[] = {
 " hdr.trid	-> TRID_DEPTH (=130). Standard to read vertical data",
 " hdr.ntr	-> nx*ny",
 " ",
-" OpendTect extra header variables:",
-" hdr.dt	-> d1*E6",
-" hdr.tracl	-> 0 to nx-1",
-" hdr.tracr	-> 0 to nx*ny-1",
-" hdr.counit	-> =1 (meters)", 
+" OpendTect extra header variables (needs 1-based indexing):",
+" hdr.cdp	-> x-index in samples (1 to nx)",
+" hdr.fldr	-> y-index in samples (1 to ny)",
+" hdr.sx	-> x-index in meters (ix+1)*dx",
+" hdr.sy	-> y-index in meters (iy+1)*dy",
 " ",
 " ",
 " Due to compatibility reasons gx and gy are integers. They are multiplied by 1000 to preserve decimal places.",
@@ -105,12 +105,17 @@ void bin2su(int nz, int nx, int ny, float dz, float dx, float dy, char *inName, 
 	
 			if(odtkey){
 				//hdr.dt = dz*1000000;
-				hdr.dt = 4000;
+				/*hdr.dt = 4000;
 				hdr.tracl = ix+1;
 				hdr.tracr = iy*nx+ix+1;
 				
 				hdr.trid=1;
-				hdr.counit=1;	
+				hdr.counit=1;*/
+
+				hdr.cdp = ix+1;			
+				hdr.fldr = iy+1;
+				hdr.sx = (int) (ix+1)*dx*1000;
+				hdr.sy = (int) (iy+1)*dy*1000;	
 			} 			 			
 			//printf("(ix, iy)=(%d, %d) hdr.gx=%d hdr.gy=%d\n", ix, iy, hdr.gx, hdr.gy);
 
