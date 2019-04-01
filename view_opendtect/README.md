@@ -8,11 +8,19 @@ cd ~/OpendTect
 bash installer-name
 ```
 Follow the instructions. If installation fails, check `INSTALL.txt` at `~/OpendTect/6.4.0`.  
-Edit your `~/.bashrc`, adding the line:
-```sh
-ODTPATH=path/to/opendtect #example: /home/victork/OpendTect/6.4.0
-ODTAREA=path/to/your/odtdata #example: /home/victork/my_opendtect_data/
+
+The next is step is optional, but recommended; it saves good time on opening OpendTect and loading data to it.  
+Create a 'standard' OpendTect data folder:
 ```
+mkdir ~/opendtect-data-folder
+```
+
+Edit your `~/.bashrc`, adding the lines:
+```sh
+export ODTPATH=path/to/opendtect     #example: /home/victork/OpendTect/6.4.0
+export ODTAREA=path/to/your/odtdata      #example: /home/victork/my_opendtect_data/
+```
+and run `source ~/.bashrc`. Some shells in `tmpUTILS` make use of these variables, so setting these up is recommended. 
 
 # Run OpendTect
 
@@ -40,12 +48,6 @@ su2sgy.sh model10_cp-3d.su
 ```
 which generates `model10_cp-3d.sgy`.
 
-2. Create a 'standard' OpendTect data folder (optional). It is a folder to move the `.sgy` you want to plot. This saves some 
-time since OpendTect's API to locate files requires some clicking (specially if one is working with many subfolders). 
-Personal preference is to create this folder at home directory(~).
-```
-mkdir ~/opendtect-data-folder
-```
 
 ## Opening data
 
