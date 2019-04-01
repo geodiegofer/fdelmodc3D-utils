@@ -18,4 +18,4 @@ clean:
 	cd bin2su		; $(MAKE) $@
 	cd twoD_to_twoHalfD	; $(MAKE) $@
 	cd vel2rho		; $(MAKE) $@
-
+	cd bin; rm *.exe

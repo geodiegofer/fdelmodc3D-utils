@@ -158,7 +158,7 @@ int main(int argc, char *argv[]){
 	if( !getparint("nz", &nz) ) err("No nz. Exiting.\n");
 	if( !getparint("nx", &nx) ) err("No nx. Exiting.\n");
 	if( !getparint("ny", &ny) ) { ny = 1; key3D=0; };
-	if( !getparint("opendt", &odtkey) ) odtkey = 0;
+	if( !getparint("odtkey", &odtkey) ) odtkey = 0;
 	if( !getparfloat("dz", &dz) ) err("No dz. Exiting.\n");
 	if( !getparfloat("dx", &dx) ) err("No dx. Exiting.\n");
 	if( !getparfloat("dy", &dy) ) dy = 0.0;
