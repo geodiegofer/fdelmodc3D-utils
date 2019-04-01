@@ -2,7 +2,7 @@
 
 The goal is to create a 2.5D model from 2D data (requires [Seismic Unix](https://github.com/JohnWStockwellJr/SeisUnix), 
 [fdelmodc](https://github.com/JanThorbecke/OpenSource) and [tmpUTILS](https://github.com/vkrGitHub/tmpUTILS) 
-functions:
+functions.
 
 ## From 2D binary data (ex. with `vel125x383.bin`):
 ```
@@ -70,7 +70,7 @@ Version using `tmpUTILS` C-functions:
 ```sh
 2dSU_to_3dSU_v2.sh model10_cp.su 120 2.5
 ```
-which takes about 38 seconds (faster since it writes the binary using `fwrite`, and fills all header parameters in a single scan).
+takes about 38 seconds (faster since it writes the binary using `fwrite`, and fills all header parameters in a single scan).
 
 Both output `model10_cp-3d.su`, which can be visualized using `suximage` (2d slices side-by-side), `sunimage` (see cube) or 
 OpendTect (check `view_opendtect` folder in this repository).
