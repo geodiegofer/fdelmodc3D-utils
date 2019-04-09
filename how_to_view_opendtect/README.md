@@ -47,7 +47,7 @@ with filled header parameters, convert file to `.sgy` in order to plot with Open
 # example with model10_cp-3d.su
 su2sgy.sh model10_cp-3d.su
 ```
-which generates `model10_cp-3d.sgy`. 
+which generates `model10_cp-3d.sgy`. Check the last section of this README on how to load it to OpendTect.
 
 ## Visualize a shot modeled with fdelmodc3D
 
@@ -67,6 +67,7 @@ su2odtsu.sh shot3D.su $dx $dy shot3D-odt.su
 # Convert data to segy format
 su2sgy.sh shot3D-odt.su # produces shot3D-odt.sgy
 ```
+Check the last section of this README on how to load it to OpendTect.
 
 ## Visualize multiple shots modeled with fdelmodc3D
 
