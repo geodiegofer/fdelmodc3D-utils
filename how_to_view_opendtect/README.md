@@ -72,7 +72,7 @@ Check the last section of this README on how to load it to OpendTect.
 
 ## Visualize multiple shots modeled with fdelmodc3D
 
-Todo
+Todo. For now, one can `suwind` individual shot cubes and make the process above.
 
 # Loading SEG-Y data to OpendTect
 
