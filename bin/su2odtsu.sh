@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if [ "$#" -ne 4 ]; then
-	echo "su2odtsgy: wrong number of input parameters. Exiting."
+	echo "su2odtsu: wrong number of input parameters. Exiting."
 	echo "Creates OpendTect-like SU file from another SU file"
 	echo "Usage: "
-	echo "./su2odtsgy.sh infile.su d2 d3 outfile.su"
+	echo "./su2odtsu.sh infile.su d2 d3 outfile.su"
 	echo "Ex: "
-	echo "./su2odtsgy.sh infile.su 25.0 25.0 outfile.su"
+	echo "./su2odtsu.sh infile.su 25.0 25.0 outfile.su"
 	#return #for function
 	exit #for script
 fi
