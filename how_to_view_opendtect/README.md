@@ -53,7 +53,8 @@ which generates `model10_cp-3d.sgy`. Check the last section of this README on ho
 
 To visualize a single shot with receivers in the x and y directions (hence, a cube), produced by `fdelmodc3D`, SU functions can be 
 used. Since `fdelmodc3D` outputs data with SU header as a standard, one can use functions such as `suximage`, `suxmov`, or the wrapper 
-around `nimage` (`sunimage.sh`) present in this repository.
+around `nimage` (`sunimage.sh`) present in this repository. If SU is installed, entering the function without parameters shows the documentation, and how to use. `surange`ing the data outputs the necessary parameters in order to use these functions.
+
 
 To view data with OpendTect, some extra header parameters must be added to the shot data produced by `fdelmodc3D`. The variables 
 `cdp`, `fldr`, `sx` and `sy` must be added accordingly (more info on `bin2su` and `su2odtsu` modules documentation). Then, this 
