@@ -1,4 +1,4 @@
-# tmpUTILS
+# fdelmodc3D-utils
 
 Temporary utilities to test fdelmodc3D.
 
@@ -16,31 +16,6 @@ export PATH=$PATH:$TMPUTILSPATH/bin
 ```
 Save. `source ~/.bashrc`.
 
-## SU-like functions list
-```sh
-# Extend a 2D binary velField to 2.5D (3D) binary velField
-twoD_to_twoHalfD.exe
-
-# Create a binary rhoField (2D or 3D) from binary velField (2D or 3D)
-vel2rho.exe
-
-# Put SU header on a model (vel or rho, 2D or 3D), compliant with `fdelmodc`'s format
-bin2su.exe
-```
-Documentation for each function can be seen by typing the function name on a terminal with no parameters.
-
-## Bash functions list
-```sh
-# Wrapper around nimage to see 3D SU files
-sunimage
-
-# Plot src and rec on top of 2D model 
-# see fdelmodc's manual, page 38
-plotgeometry
-```
-Documentation for each function can be seen by typing the function name on a terminal with no parameters.
-
-`sunimage` requires `nimage` added to Seismic Unix. For information on installing nimage, check [this](https://github.com/vkrGitHub/Installation-Tutorials/tree/master/SU)
 
 
 
