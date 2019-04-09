@@ -20,7 +20,7 @@ Edit your `~/.bashrc`, adding the lines:
 export ODTPATH=path/to/opendtect     #example: /home/victork/OpendTect/6.4.0
 export ODTAREA=path/to/your/odtdata      #example: /home/victork/my_opendtect_data/
 ```
-and run `source ~/.bashrc`. Some shells in `tmpUTILS` make use of these variables, so setting these up is recommended. 
+and run `source ~/.bashrc`. Some shells in `fdelmodc3D-utils` make use of these variables, so setting these up is recommended. 
 
 # Run OpendTect
 
@@ -28,6 +28,7 @@ OpendTect is run from inside its main folder with `./start_dtect`. If `ODTPATH` 
 ```
 $ODTPATH/start_dtect &
 ``` 
+from anywhere.
 
 # Test and visualize 3D open data
 
@@ -37,7 +38,7 @@ in this same page. Creating a survey from a SEG-Y, checking header parameters, s
 getting acquainted to the 3 rotation buttons and finding best color schemes should be enough to proceed with 
 custom 3D data (below).
 
-# Visualize custom 3D velocity/density models
+## Visualize custom 3D velocity/density models
 
 OpendTect is intended for seismic data; nevertheless, it is possible to visualize velocity/density models in SU format if the 
 header parameters `cdp, fldr, sx, sy` are filled correctly. Check [how_to_create25d_data](https://github.com/vkrGitHub/fdelmodc3D-utils/tree/master/how_to_create25d_data) folder for more details. With this SU data 
@@ -46,18 +47,42 @@ with filled header parameters, convert file to `.sgy` in order to plot with Open
 # example with model10_cp-3d.su
 su2sgy.sh model10_cp-3d.su
 ```
-which generates `model10_cp-3d.sgy`.
+which generates `model10_cp-3d.sgy`. 
+
+## Visualize a shot modeled with fdelmodc3D
+
+To visualize a single shot with receivers in the x and y directions (hence, a cube), produced by `fdelmodc3D`, SU functions can be 
+used. Since `fdelmodc3D` outputs data with SU header as a standard, one can use functions such as `suximage`, `suxmov`, or the wrapper 
+around `nimage` (`sunimage.sh`) present in this repository.
+
+To view data with OpendTect, some extra header parameters must be added to the shot data produced by `fdelmodc3D`. The variables 
+`cdp`, `fldr`, `sx` and `sy` must be added accordingly (more info on `bin2su` and `su2odtsu` modules documentation). Then, this 
+new SU file must be converted to SEG-Y format in order to be read by OpendTect. The process can be done by the following shells:
+```sh
+# Add extra header variables to shot3D.su 
+dx=25.0   #example
+dy=25.0   #example
+su2odtsu.sh shot3D.su $dx $dy shot3D-odt.su
+
+# Convert data to segy format
+su2sgy.sh shot3D-odt.su # produces shot3D-odt.sgy
+```
+
+## Visualize multiple shots modeled with fdelmodc3D
+
+Todo
+
+# Loading SEG-Y data to OpendTect
+
+Convert your SU data (with the necessary OpendTect header parameters - see above sections for a 3D shot and  [how_to_create25d_data](https://github.com/vkrGitHub/fdelmodc3D-utils/tree/master/how_to_create25d_data) for 3D velocity and density models) to SEG-Y 
+format.
 
 
-## Opening data
-
-Convert to sgy and move to `$ODTAREA` (optional). This process saves some time, since locating the `.sgy` 
+(optional) Move data to `$ODTAREA` . This process saves some time, since locating the `.sgy` 
 with OpendTect's API takes some clicks. 
 ```
-su2sgy.sh model10_cp-3d.su
 mv model10_cp-3d.sgy $ODTAREA
 ```
-
 
 Start OpendTect: 
 ```sh
