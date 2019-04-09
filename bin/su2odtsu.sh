@@ -49,7 +49,10 @@ echo "Setting fldr as y-coord in samples"
 suchw key1=fldr key2=sy d=$d3 <$outfile >tmp.su
 mv tmp.su $outfile
 
-
+# Clean
+rm hdr.txt
+rm tmp.su
+rm tmp2.su
 
 
 
