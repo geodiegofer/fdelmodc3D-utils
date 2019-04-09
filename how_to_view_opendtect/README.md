@@ -40,7 +40,7 @@ custom 3D data (below).
 # Visualize custom 3D velocity/density models
 
 OpendTect is intended for seismic data; nevertheless, it is possible to visualize velocity/density models in SU format if the 
-header parameters `cdp, fldr, sx, sy` are filled correctly. Check `twoHalfD_data` folder for more details. With this SU data 
+header parameters `cdp, fldr, sx, sy` are filled correctly. Check [how_to_create25d_data](https://github.com/vkrGitHub/fdelmodc3D-utils/tree/master/how_to_create25d_data) folder for more details. With this SU data 
 with filled header parameters, convert file to `.sgy` in order to plot with OpendTect:
 ```sh
 # example with model10_cp-3d.su
