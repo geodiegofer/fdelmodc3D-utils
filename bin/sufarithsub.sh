@@ -22,6 +22,8 @@ sustrip <$2 >f2
 
 farith in=f1 in2=f2 out=f3 op=sub
 
-ximage n1=$n1 <f3 perc=98 legend=1 lwidth=8 & 
+ximage n1=$n1 <f1 perc=98 legend=1 lwidth=8 title=$1 & 
+ximage n1=$n1 <f2 perc=98 legend=1 lwidth=8 title=$2 & 
+ximage n1=$n1 <f3 perc=98 legend=1 lwidth=8 title='dif' & 
 
 rm f1 f2 f3
