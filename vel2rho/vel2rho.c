@@ -7,7 +7,7 @@
 #include "par.h"
 
 // SU header read/write*/
-//#include "segy.h"
+#include "segy.h"
 //#define TRCBYTES                240		//SU-header size
 
 /*********************** self documentation **********************/
