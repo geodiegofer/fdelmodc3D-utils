@@ -10,17 +10,17 @@
 
 MAIN= bin2su
 OBJS= $(MAIN).o
-
+FLAGS= 
 
 all: $(MAIN).exe
 
 
 $(MAIN).exe: $(OBJS)
-	gcc -o $@ $^ -L$(CWPROOT)/lib -lsu -lpar -lcwp
+	gcc $(FLAGS) -o $@ $^ -L$(CWPROOT)/lib -lsu -lpar -lcwp
 	cp $@ ../bin
 
 %.o: %.c
-	gcc -c $< -I$(CWPROOT)/include
+	gcc -c $(FLAGS) $< -I$(CWPROOT)/include
 
 clean:
 	rm *.o *.exe

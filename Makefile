@@ -7,6 +7,7 @@ all: mkdirs chmods
 	cd bin2su		; $(MAKE)
 	cd twoD_to_twoHalfD	; $(MAKE) 
 	cd vel2rho		; $(MAKE) 
+	cd mysurange	; $(MAKE)
 
 mkdirs:
 	-mkdir -p bin
@@ -18,4 +19,5 @@ clean:
 	cd bin2su		; $(MAKE) $@
 	cd twoD_to_twoHalfD	; $(MAKE) $@
 	cd vel2rho		; $(MAKE) $@
+	cd mysurange		; $(MAKE) $@
 	rm -f bin/*.exe

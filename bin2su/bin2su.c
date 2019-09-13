@@ -14,9 +14,10 @@ Or Thorbecke's fix:
 #include <string.h>
 #include <assert.h>
 
+
 #include "su.h"
-#include "segy.h"
 #include "par.h"
+#include "segy.h"
 
 #define TRCBYTES                240 //as in fdelmodc 
 
