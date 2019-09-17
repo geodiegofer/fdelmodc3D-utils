@@ -3,7 +3,9 @@
 eval "$(conda shell.bash hook)"
 conda activate 
 
-python ../plot3dSliceSnaps/plot3dSliceSnaps.py $@
+add=$(echo $PATH | grep -oP "(?<=:)[^:]+fdelmodc3D-utils/bin(?=:)" | head -1)
+
+python "$add/plot3dSliceSnaps.py" $@
 
 conda deactivate
 
