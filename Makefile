@@ -8,6 +8,7 @@ all: mkdirs chmods
 	cd twoD_to_twoHalfD	; $(MAKE) 
 	cd vel2rho		; $(MAKE) 
 	cd mysurange	; $(MAKE)
+	cd plot3dSliceSnaps; $(MAKE)
 
 mkdirs:
 	-mkdir -p bin
