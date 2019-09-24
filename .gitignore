@@ -3,3 +3,4 @@
 *.su 
 *.txt 
 *.fuse*
+*.o
