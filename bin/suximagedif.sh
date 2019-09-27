@@ -4,11 +4,11 @@ echo "------------------------------------------------"
 echo "suximagedif.sh - Gets diff of 2 su files and ximage it to user."
 
 if [ "$#" -ne 2 ]; then
-	echo "sufarithsub.sh: wrong number of input parameters. Exiting."
+	echo "suximagedif.sh: wrong number of input parameters. Exiting."
 	echo "Correct usage is:"
-	echo "	sufarithsub.sh sufile1.su sufile2.su"
+	echo "	suximagedif.sh sufile1.su sufile2.su"
 	echo "Example:"
-	echo "	sufarithsub.sh shots1.su shots2.su"
+	echo "	suximagedif.sh shots1.su shots2.su"
 	echo "------------------------------------------------"
 	exit # for shellscript
 	#return # for shell function
