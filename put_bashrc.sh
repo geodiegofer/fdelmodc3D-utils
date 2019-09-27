@@ -13,7 +13,7 @@ fi
 if [[ $1 == "install" ]]; then
 	here=$(pwd)
 	
-	sed -i "4,4s|FDEL3DUTILSROOT$|FDEL3DUTILSROOT=$here|g" source_me.sh
+	sed -i "4,4s|FDEL3DUTILSROOT$|FDEL3DUTILSROOT=$here/bin|g" source_me.sh
 
 	echo "# fdelmodc3d utils source" >> ~/.bashrc
 	echo "source $here/source_me.sh # fdelmodc3d utils source" >> ~/.bashrc
@@ -24,8 +24,8 @@ elif [[ $1 == "uninstall" ]]; then
 	sed -i "4,4s|FDEL3DUTILSROOT.*$|FDEL3DUTILSROOT|g" source_me.sh
 
 	sed -i "/# fdelmodc3d utils source/d" ~/.bashrc
-	echo "Removed source_me lines from bashrc."
 	
+	echo "Removed source_me lines from bashrc."
 else
 	echo "Invalid option. Please choose 'install' or 'uninstall' "
 fi
