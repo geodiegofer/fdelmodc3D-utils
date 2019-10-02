@@ -23,4 +23,4 @@ $(MAIN).exe: $(OBJS)
 	gcc -c $< -I$(CWPROOT)/include
 
 clean:
-	rm *.o *.exe
+	rm *.o *.exe | true

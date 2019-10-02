@@ -25,4 +25,4 @@ $(MAIN).exe: $(OBJS)
 
 
 clean:
-	rm *.o *.exe
+	rm *.o *.exe | true

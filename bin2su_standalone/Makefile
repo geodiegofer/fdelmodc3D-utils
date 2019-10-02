@@ -23,4 +23,4 @@ $(MAIN).exe: $(MOBJ) $(OBJS)
 
 
 clean:
-	rm *.o *.exe
+	rm *.o *.exe | true

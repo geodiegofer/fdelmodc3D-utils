@@ -11,4 +11,4 @@ rmserr.exe: rmserr.o
 	gcc -c $(FLAGS) $<	
 	
 clean:
-	rm *.o *.exe	
+	rm *.o *.exe | true	

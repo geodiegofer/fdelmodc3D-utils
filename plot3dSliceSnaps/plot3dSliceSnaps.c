@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 int main(int argc, char *argv[]){
-	printf("------- plot3dSliceSnaps --------\n");
+	printf("------- fdelmodc3D-utils repo's plot3dSliceSnaps --------\n");
 	printf("Slices a 3D snapscube binary in one of 3 dimensions (z,x,y) producing a 2D snapcube in the selected slice. ");
 	printf("Slicing is done by specifying a dimension and a factor 'fac'. The maximum of selected dim is multiplied by fac,");
 	printf("therefore fac must be <1.\n\n");

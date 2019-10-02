@@ -12,4 +12,4 @@ $(EXEC): $(MOBJ) $(OBJS)
 	gcc -c $<
 	
 clean:
-	rm *.o *.exe
+	rm *.o *.exe | true

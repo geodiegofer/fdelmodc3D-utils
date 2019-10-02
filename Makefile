@@ -1,8 +1,7 @@
 #master makefile for OpenSource MYUTILS
 #adapted from Thorbecke's OpenSource main Makefile
 
-HERE=$$(pwd)
-MAKE="make"
+MAKE=make
 
 all: mkdirs install chmods
 
@@ -14,7 +13,6 @@ install:
 	cd plot3dSliceSnaps; $(MAKE)
 	cd rmserr; $(MAKE)
 	sh put_bashrc.sh $@
-	source ~/.bashrc
 
 mkdirs:
 	-mkdir -p bin
@@ -24,10 +22,10 @@ chmods:
 
 clean:
 	sh put_bashrc.sh uninstall
-	$$(source ${HERE}/source_me.sh)
-	cd bin2su		; $(MAKE) $@ | true
-	cd twoD_to_twoHalfD	; $(MAKE) $@ | true
-	cd vel2rho		; $(MAKE) $@ | true
-	cd mysurange		; $(MAKE) $@ | true
-	cd rmserr; $(MAKE) $@ | true
-	rm -f bin/*.exe | true
+	cd bin2su		; make clean
+	cd twoD_to_twoHalfD	; make clean
+	cd vel2rho		; make clean
+	cd mysurange		; make clean
+	cd plot3dSliceSnaps; make clean
+	cd rmserr; make clean
+	rm -f bin/*.exe

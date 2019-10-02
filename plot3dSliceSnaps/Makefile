@@ -29,7 +29,7 @@ $(EXEC): $(MOBJ) $(OBJS)
 	$(CC) $(FLAGS) -c $< 
 
 clean:
-	rm *.o *.exe
+	rm *.o *.exe | true
 	
 PHONY: clean
 
