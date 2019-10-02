@@ -9,9 +9,9 @@ int main(int argc, char *argv[]){
 	printf("Slices a 3D snapscube binary in one of 3 dimensions (z,x,y) producing a 2D snapcube in the selected slice. ");
 	printf("Slicing is done by specifying a dimension and a factor 'fac'. The maximum of selected dim is multiplied by fac,");
 	printf("therefore fac must be <1.\n\n");
-	printf("Usage: ./plot3dSliceSnaps.exe nz nx ny slicedim fac snaps.bin\n\n");
+	printf("Usage: ./plot3dSliceSnaps.exe nz nx ny slicedim fac snaps.bin slices.bin\n\n");
 	// Check IO
-	if(argc!=1+6){
+	if(argc!=1+7){
 		printf("Incorrect usage of input parameters. Exiting.\n");
 		exit(0);	
 	}
@@ -40,7 +40,8 @@ int main(int argc, char *argv[]){
 	nt = ntotal/(nz*nx*ny*sizeof(float));
 	printf("ntotal = %d ntotal/(nz*nx*ny)=%d\n", ntotal, nt);
 
-	fpout = fopen("tmp.bin", "w");
+	//fpout = fopen("tmp.bin", "w");
+	fpout = fopen(argv[7], "w");
 	if(strstr(argv[4],"y")){
 		n1 = nz;
 		n2 = nx;
@@ -135,12 +136,12 @@ int main(int argc, char *argv[]){
 	// Init
 	
 	// Do stuff
-	sprintf(title, "%s %d-th slice (1st and last snaps zero-padded)", argv[4], pos);
-	char nimagecall[400];
-	sprintf(nimagecall, "nimage n1=%d n2=%d <tmp.bin title='%s' perc=99 &", n1, n2, title);
-	
-	system(nimagecall);
-	system("rm tmp.bin");
+/*	sprintf(title, "%s %d-th slice (1st and last snaps zero-padded)", argv[4], pos);*/
+/*	char nimagecall[400];*/
+/*	sprintf(nimagecall, "nimage n1=%d n2=%d <tmp.bin title='%s' perc=99 &", n1, n2, title);*/
+/*	*/
+/*	system(nimagecall);*/
+/*	system("rm tmp.bin");*/
 	
 /*	system("/bin/pwd");*/
 /*	system("ximage n1=64 <test.bin &");*/

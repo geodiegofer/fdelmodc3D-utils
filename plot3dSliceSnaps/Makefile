@@ -17,12 +17,16 @@ MOBJ = plot3dSliceSnaps.o
 OBJS = 
 
 
-all: $(EXEC)
+all: $(EXEC) plot3dSliceSnapsdif
 
 # Executable
 $(EXEC): $(MOBJ) $(OBJS)
 	$(CC) $(FLAGS) -o $@ $^
 	cp $@ ../bin
+	
+plot3dSliceSnapsdif:	
+	chmod 777 plot3dSliceSnapsdif.sh
+	cp plot3dSliceSnapsdif.sh ../bin
 
 # Objects
 %.o: %.c
