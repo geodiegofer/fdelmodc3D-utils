@@ -14,4 +14,5 @@ n2=$(surange <$1 | awk '$1 ~ /tracf/ {print $3}')
 sustrip <$1 >test.bin
 nimage n1=$n1 n2=$n2 <test.bin perc=$2 &
 
+wait
 rm test.bin 
