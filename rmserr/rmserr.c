@@ -3,6 +3,56 @@
 #include <string.h>
 #include <math.h>
 
+/*
+Taken from ZFP library
+https://github.com/LLNL/zfp
+*/
+/* compute and print reconstruction error */
+static void
+test_error(const void* fin, const void* fout, char *vartype)
+{
+	const float* f32i;
+	const double* f64i;
+	const float* f32o;
+	const double* f64o;
+	double fmin = +DBL_MAX;
+	double fmax = -DBL_MAX;
+	double erms = 0;
+	double ermsn = 0;
+	double emax = 0;
+	double psnr = 0;
+	size_t i;
+
+	int stride;
+
+	if( strstr(vartype,"float") ){
+		stride = sizeof(float);
+	}else if ( strstr(vartype,"double") ){
+		stride = sizeof(double);
+	}else{
+		printf("rmserr's print_error Invalid vartype. Exiting.\n");
+		exit(0);
+	}
+
+
+	while( fread(&fl1, 1, stride, fp1) ){
+		fread(&fl2, 1, stride, fp2);
+		erms += (double)(fl1 - fl2)*(fl1 - fl2);
+		count ++;
+		
+		emax = MAX(emax, d);
+		erms += d * d;
+		fmin = MIN(fmin, val);
+		fmax = MAX(fmax, val);
+	}
+
+	erms = sqrt(erms / n);
+	ermsn = erms / (fmax - fmin);
+	psnr = 20 * log10((fmax - fmin) / (2 * erms));
+	fprintf(stderr, " rmse=%.4g nrmse=%.4g maxe=%.4g psnr=%.2f", erms, ermsn, emax, psnr);
+}
+
+
 double rmserr2filesF(FILE *fp1, FILE *fp2){
 	float fl1, fl2;
 	int stride = sizeof(float);
@@ -91,6 +141,10 @@ int main(int argc, char *argv[]){
 	
 	printf("fdelmodc3D utils's -- rmserr\n");
 	printf("rmserr between %s and %s is: %.6e\n", argv[1], argv[2], rmserr);
+	
+	printf("Testing ZFP's print_error.\n");
+	test_error(fp1, fp2, argv[3]);
+	
 	// Do stuff
 	
 	// Free

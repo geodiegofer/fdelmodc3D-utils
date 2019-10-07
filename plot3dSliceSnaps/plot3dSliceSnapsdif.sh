@@ -45,9 +45,9 @@ fi
 
 echo ""
 echo "n1=$n1 n2=$n2"
-nimage n1=$n1 n2=$n2 <tmp1.bin perc=98 title=$title1 &
-nimage n1=$n1 n2=$n2 <tmp2.bin perc=98 title=$title2 &
-nimage n1=$n1 n2=$n2 <tmp3.bin perc=98 title=$title3 &
+nimage n1=$n1 n2=$n2 <tmp1.bin perc=98 title=$title1 legend=1 &
+nimage n1=$n1 n2=$n2 <tmp2.bin perc=98 title=$title2 legend=1 &
+nimage n1=$n1 n2=$n2 <tmp3.bin perc=98 title=$title3 legend=1 &
 
 wait
 rm tmp1.bin tmp2.bin tmp3.bin
